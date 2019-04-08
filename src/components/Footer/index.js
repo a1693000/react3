@@ -1,5 +1,16 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-const Footer = () => <p>Você tem 3 favoritos.</p>;
+import { connect } from 'react-redux';
 
-export default Footer;
+const Footer = ({ count }) => <p>Você tem {count} favoritos.</p>;
+
+Footer.propTypes = {
+  count: PropTypes.number.isRequired,
+};
+
+const mapStateToProps = state => ({
+  count: state.favorites.length,
+});
+
+export default connect(mapStateToProps)(Footer);
