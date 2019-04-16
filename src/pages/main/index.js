@@ -1,9 +1,10 @@
+/* eslint-disable react/prop-types */
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import * as FavoriteActions from '../../store/actions/favorites';
+import { Creators as FavoriteActions } from '../../store/ducks/favorites';
 
 class Main extends Component {
   static propTypes = {
@@ -45,6 +46,10 @@ class Main extends Component {
           <button type="submit">Adicionar</button>
 
           {this.props.favorites.loading && <span>Carregando</span>}
+
+          {!!this.props.favorites.error && (
+            <span style={{ color: '#F00' }}>{this.props.favorites.error}</span>
+          )}
         </form>
 
         <ul>
